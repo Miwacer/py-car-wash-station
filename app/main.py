@@ -14,7 +14,7 @@ class CarWashStation:
         self.average_rating = average_rating
         self.count_of_ratings = count_of_ratings
 
-    def serve_cars(self, cars: int) -> int:
+    def serve_cars(self, cars: list) -> int:
         income = 0
         for car in cars:
             if self.clean_power > car.clean_mark:
@@ -32,9 +32,9 @@ class CarWashStation:
         if self.clean_power > car.clean_mark:
             car.clean_mark = self.clean_power
 
-    def rate_service(self, new_rating: int) -> None:
+    def rate_service(self, new_rating: int) -> tuple:
         self.count_of_ratings += 1
         self.average_rating = round((self.average_rating
                                      * (self.count_of_ratings - 1)
                                      + new_rating) / self.count_of_ratings, 1)
-        return self.average_rating, 1
+        return (self.average_rating, 1)
